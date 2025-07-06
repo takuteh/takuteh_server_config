@@ -1,0 +1,2 @@
+# takuteh_server_config
+サーバーの設定等を保存しておくリポジトリ
