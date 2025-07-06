@@ -1,0 +1,14 @@
+version: '3'
+services:
+  squid:
+    image: ubuntu/squid:latest
+    container_name: forward_proxy
+    ports:
+      - "3128:3128"   # ホストの3128をコンテナの3128にマッピング
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf:ro   # カスタム設定ファイルマウント
+      - ./whitelist.txt:/etc/squid/whitelist.txt:ro
+      - squid_cache:/var/spool/squid
+    restart: unless-stopped
+volumes:
+  squid_cache:
