@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok
+    restart: always
+    command: start --all --config /etc/ngrok/ngrok.yml
+    volumes:
+      - ./ngrok.yml:/etc/ngrok/ngrok.yml:ro
+    networks:
+      - web-server
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "https://your-fixed-domain.ngrok-free.app/health"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+
+networks:
+  web-server:
+    name: web-server

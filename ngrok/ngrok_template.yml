@@ -1,0 +1,7 @@
+version: "2"
+authtoken: YOUR_AUTH_TOKEN
+tunnels:
+  web:
+    proto: http
+    addr: reverse_proxy_nginx_1:80  #プロキシ
+    hostname: your_domain.com
